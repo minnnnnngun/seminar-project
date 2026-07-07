@@ -1,19 +1,19 @@
 :root {
   color-scheme: light;
-  --bg: #f6f6f4;
+  --bg: #f5f8ff;
   --panel: #ffffff;
-  --text: #171717;
-  --subtext: #666666;
-  --border: #d6d6d3;
-  --border-soft: #ececea;
-  --blue: #222222;
-  --blue-dark: #000000;
-  --green: #2f2f2f;
-  --orange: #555555;
-  --red: #111111;
-  --green-bg: #f2f2f0;
-  --orange-bg: #eeeeec;
-  --red-bg: #e8e8e5;
+  --text: #172033;
+  --subtext: #637189;
+  --border: #c9d8f2;
+  --border-soft: #e3ebf8;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --green: #1f6feb;
+  --orange: #5b7cfa;
+  --red: #174ea6;
+  --green-bg: #eaf2ff;
+  --orange-bg: #eef2ff;
+  --red-bg: #e6efff;
   font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
 }
 
@@ -140,8 +140,8 @@ p {
 }
 
 .nav-link.active {
-  border-color: #b8b8b4;
-  background: #f0f0ee;
+  border-color: #9bbcf8;
+  background: #eaf2ff;
   color: var(--blue-dark);
 }
 
@@ -154,7 +154,7 @@ p {
 .status-toolbar {
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: linear-gradient(180deg, #ffffff 0%, #fafaf9 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   padding: 10px 14px;
   margin-bottom: 14px;
 }
@@ -197,7 +197,7 @@ p {
   width: fit-content;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: #fafaf9;
+  background: #f8fbff;
   color: var(--subtext);
   padding: 6px 10px;
   font-size: 0.82rem;
@@ -254,7 +254,7 @@ p {
   border-left: 5px solid var(--green);
   border-top: 0;
   border-radius: 6px;
-  background: linear-gradient(180deg, #ffffff 0%, #fbfbfa 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
   padding: 15px 16px;
 }
 
@@ -290,7 +290,7 @@ p {
   display: inline-flex;
   align-items: center;
   min-height: 27px;
-  border: 1px solid #b8b8b4;
+  border: 1px solid #9bbcf8;
   border-radius: 999px;
   background: var(--green-bg);
   color: var(--green);
@@ -301,7 +301,7 @@ p {
 }
 
 .status-pill.pending {
-  border-color: #c8c8c3;
+  border-color: #b8c7ff;
   background: var(--orange-bg);
   color: var(--orange);
 }
@@ -309,7 +309,7 @@ p {
 .status-pill.reserved,
 .status-pill.using,
 .status-pill.unavailable {
-  border-color: #a8a8a4;
+  border-color: #9bbcf8;
   background: var(--red-bg);
   color: var(--red);
 }
@@ -347,7 +347,7 @@ p {
   justify-content: center;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: #fafaf9;
+  background: #f8fbff;
   color: var(--subtext);
   padding: 0 8px;
   font-size: 0.75rem;
@@ -356,27 +356,27 @@ p {
 }
 
 .period-chip.available {
-  border-color: #b8b8b4;
+  border-color: #9bbcf8;
   background: var(--green-bg);
   color: var(--green);
 }
 
 .period-chip.pending,
 .period-chip.reserved {
-  border-color: #c8c8c3;
+  border-color: #b8c7ff;
   background: var(--orange-bg);
   color: var(--orange);
 }
 
 .period-chip.using,
 .period-chip.unavailable {
-  border-color: #a8a8a4;
+  border-color: #9bbcf8;
   background: var(--red-bg);
   color: var(--red);
 }
 
 .period-chip.active {
-  outline: 2px solid #9f9f9a;
+  outline: 2px solid #9bbcf8;
   outline-offset: 1px;
 }
 
@@ -397,8 +397,8 @@ p {
 }
 
 .card-actions button:first-child {
-  border-color: #b8b8b4;
-  background: #f0f0ee;
+  border-color: #9bbcf8;
+  background: #eaf2ff;
   color: var(--blue-dark);
 }
 
@@ -462,7 +462,7 @@ select {
 input:focus,
 select:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgb(34 34 34 / 12%);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 14%);
 }
 
 .error,
@@ -509,7 +509,7 @@ body:not([data-page="teacher"]) .teacher-panel {
   border: 1px solid var(--border);
   border-left: 4px solid var(--blue);
   border-radius: 6px;
-  background: linear-gradient(180deg, #ffffff 0%, #fbfbfa 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
   padding: 12px;
 }
 
@@ -544,14 +544,14 @@ body:not([data-page="teacher"]) .teacher-panel {
 .empty-state {
   border: 1px dashed var(--border);
   border-radius: 6px;
-  background: #fafaf9;
+  background: #f8fbff;
   padding: 18px;
   color: var(--subtext);
   text-align: center;
 }
 
 .empty-state.error {
-  border-color: #a8a8a4;
+  border-color: #9bbcf8;
   background: var(--red-bg);
   color: var(--red);
   text-align: left;
@@ -575,7 +575,7 @@ body:not([data-page="teacher"]) .teacher-panel {
 .highlight-reason {
   border-left: 3px solid var(--blue);
   border-radius: 6px;
-  background: #f0f0ee;
+  background: #eaf2ff;
   color: var(--blue-dark);
   padding: 9px;
 }

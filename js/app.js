@@ -1,6 +1,6 @@
 const API_BASE =
   localStorage.getItem("seminar-room-api-base") ||
-  (location.protocol === "file:" ? "http://localhost:8080" : "");
+  "https://seminar.sungju.xyz";
 const API_PREFIX = "/api/v1";
 const tokenKey = "seminar-room-teacher-token-v1";
 
@@ -688,5 +688,8 @@ function getToken() {
 }
 
 function getErrorMessage(error) {
+  if (error instanceof TypeError && error.message === "Failed to fetch") {
+    return "브라우저에서 API 요청이 차단되었습니다. 서버 CORS 설정에서 이 프론트 주소를 허용해야 합니다.";
+  }
   return error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.";
 }
