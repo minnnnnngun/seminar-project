@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4층 세미나실</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-page="floor" data-floor="4">
+    <!-- 전체 페이지 감싸는 큰 레이아웃임. -->
+    <div class="app-shell">
+      <!-- 위에 고정되는 헤더임. 제목이랑 주요 버튼 보여줌. -->
+      <header class="site-header">
+        <div class="brand">
+          <span class="brand-mark">S</span>
+          <div>
+            <p>Seminar Room</p>
+            <h1>4층 세미나실</h1>
+          </div>
+        </div>
+        <nav class="header-actions" aria-label="주요 기능">
+          <a class="nav-link active" href="index.html">4층</a>
+          <a class="nav-link" href="floor-3.html">3층</a>
+          <a class="nav-link" href="floor-2.html">2층</a>
+          <button id="openReservationButton" type="button">예약하기</button>
+          <button id="openLoginButton" class="secondary" type="button">선생님 로그인</button>
+        </nav>
+      </header>
+
+      <!-- 메인 영역임. 상태 안내랑 층별 세미나실 카드 들어감. -->
+      <main class="main-layout">
+        <!-- 색상 뜻이랑 예약 안내 문구임. -->
+        <section class="status-toolbar" aria-label="상태 안내">
+          <p>학생이 예약을 신청하면 선생님 승인 후 사용 중으로 바뀌고, 이어지는 교시는 다음 시간 예약으로 신청할 수 있습니다.</p>
+        </section>
+
+        <!-- JavaScript가 층별 세미나실 목록 넣어주는 자리임. -->
+        <section id="floorGrid" class="floor-grid" aria-label="층별 세미나실"></section>
+      </main>
+    </div>
+
+    <!-- 예약하기 버튼 누르면 열리는 예약 모달임. -->
+    <dialog id="reservationDialog" class="dialog">
+      <form id="reservationForm" class="dialog-panel">
+        <div class="dialog-heading">
+          <div>
+            <p>Reservation</p>
+            <h2>세미나실 예약</h2>
+          </div>
+          <button id="closeReservationButton" class="icon-button" type="button" aria-label="닫기">x</button>
+        </div>
+        <label>
+          사용 교시
+          <select id="periodSelect" required></select>
+        </label>
+        <label>
+          세미나실
+          <select id="roomSelect" required></select>
+        </label>
+        <label>
+          학생 이름
+          <input id="studentInput" type="text" placeholder="예: 김철수" required autocomplete="off" />
+        </label>
+        <label>
+          사유
+          <input id="reasonInput" type="text" placeholder="예: 팀 프로젝트 회의" required autocomplete="off" />
+        </label>
+        <button type="submit">예약 신청하기</button>
+        <p id="formMessage" class="form-message" role="status"></p>
+      </form>
+    </dialog>
+
+    <!-- 선생님 로그인 버튼 누르면 열리는 로그인 모달임. -->
+    <dialog id="loginDialog" class="dialog">
+      <form id="loginForm" class="dialog-panel">
+        <div class="dialog-heading">
+          <div>
+            <p>Teacher Access</p>
+            <h2>선생님 로그인</h2>
+          </div>
+          <button id="closeLoginButton" class="icon-button" type="button" aria-label="닫기">x</button>
+        </div>
+        <label>
+          교사 이름
+          <input id="teacherName" type="text" autocomplete="username" placeholder="이름을 입력하세요" required />
+        </label>
+        <label>
+          비밀번호
+          <input id="teacherPassword" type="password" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required />
+        </label>
+        <button type="submit">로그인</button>
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </dialog>
+
+    <!-- JavaScript가 복사해서 쓰는 층 섹션 틀임. -->
+    <template id="floorTemplate">
+      <section class="floor-section">
+        <div class="floor-heading">
+          <h2></h2>
+          <span></span>
+        </div>
+        <div class="room-grid"></div>
+      </section>
+    </template>
+
+    <!-- JavaScript가 복사해서 쓰는 세미나실 카드 틀임. -->
+    <template id="roomCardTemplate">
+      <article class="room-card">
+        <div class="room-card-top">
+          <div>
+            <h3></h3>
+            <p class="room-subtitle"></p>
+          </div>
+          <span class="status-pill"></span>
+        </div>
+        <dl class="room-details"></dl>
+        <div class="card-actions"></div>
+      </article>
+    </template>
+
+    <!-- 화면 표시랑 예약 기능 맡는 스크립트임. -->
+    <script src="../js/app.js"></script>
+  </body>
+</html>

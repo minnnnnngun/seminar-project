@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>선생님 페이지</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body data-page="teacher">
+    <div class="app-shell">
+      <header class="site-header">
+        <div class="brand">
+          <span class="brand-mark">S</span>
+          <div>
+            <p>Teacher Access</p>
+            <h1>선생님 페이지</h1>
+          </div>
+        </div>
+        <nav class="header-actions" aria-label="주요 기능">
+          <a class="nav-link" href="index.html">4층</a>
+          <a class="nav-link" href="floor-3.html">3층</a>
+          <a class="nav-link" href="floor-2.html">2층</a>
+          <button id="openLoginButton" class="secondary" type="button">선생님 로그인</button>
+        </nav>
+      </header>
+
+      <main class="main-layout teacher-layout">
+        <section class="status-toolbar" aria-label="선생님 안내">
+          <div class="legend">
+            <span><i class="dot pending"></i>승인 대기</span>
+            <span><i class="dot unavailable"></i>사용 중</span>
+            <span><i class="dot available"></i>사용 가능</span>
+          </div>
+          <p>학생 신청을 검토하고 승인하면 해당 세미나실은 바로 사용 중으로 표시됩니다.</p>
+        </section>
+
+        <aside id="teacherPanel" class="teacher-panel" hidden>
+          <div class="teacher-panel-top">
+            <div>
+              <p>Teacher Inbox</p>
+              <h2>예약 신청 관리</h2>
+            </div>
+            <button id="logoutButton" class="secondary" type="button">로그아웃</button>
+          </div>
+          <div id="teacherInbox" class="inbox"></div>
+        </aside>
+      </main>
+    </div>
+
+    <dialog id="loginDialog" class="dialog">
+      <form id="loginForm" class="dialog-panel">
+        <div class="dialog-heading">
+          <div>
+            <p>Teacher Access</p>
+            <h2>선생님 로그인</h2>
+          </div>
+          <button id="closeLoginButton" class="icon-button" type="button" aria-label="닫기">x</button>
+        </div>
+        <label>
+          교사 이름
+          <input id="teacherName" type="text" autocomplete="username" placeholder="이름을 입력하세요" required />
+        </label>
+        <label>
+          비밀번호
+          <input id="teacherPassword" type="password" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required />
+        </label>
+        <button type="submit">로그인</button>
+        <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </dialog>
+
+    <dialog id="reviewDialog" class="dialog">
+      <div class="dialog-panel">
+        <div class="dialog-heading">
+          <div>
+            <p>Reservation Review</p>
+            <h2>예약 검토</h2>
+          </div>
+          <button id="closeReviewButton" class="icon-button" type="button" aria-label="닫기">x</button>
+        </div>
+
+        <div class="review-info">
+          <dl class="room-details">
+            <dt>신청 학생</dt>
+            <dd id="reviewStudent"></dd>
+            <dt>장소/시간</dt>
+            <dd id="reviewTarget"></dd>
+            <dt>학생 사유</dt>
+            <dd id="reviewReason" class="highlight-reason"></dd>
+          </dl>
+        </div>
+
+        <div class="review-actions">
+          <button id="approveInReview" type="button">승인하기</button>
+          <hr class="divider" />
+          <div class="reject-form">
+            <label>
+              거절 사유
+              <input id="teacherReasonInput" type="text" placeholder="거절 사유를 입력하세요 (선택 사항)" />
+            </label>
+            <button id="rejectInReview" class="danger" type="button">예약 거절</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="../js/app.js"></script>
+  </body>
+</html>
