@@ -1,0 +1,97 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.site-header {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid var(--border);
+  background: #ffffff;
+  padding: 16px 30px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--blue);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.brand p,
+.dialog-heading p,
+.teacher-panel-top p {
+  margin-bottom: 2px;
+  color: var(--subtext);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.brand h1,
+.dialog-heading h2,
+.teacher-panel-top h2 {
+  margin-bottom: 0;
+}
+
+.brand h1 {
+  font-size: 1.6rem;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nav-link {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 0 13px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-link.active {
+  border-color: #9bbcf8;
+  background: #eaf2ff;
+  color: var(--blue-dark);
+}
+
+.main-layout {
+  display: block;
+  gap: 14px;
+  padding: 18px 30px 26px;
+}
+
+.status-toolbar {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.status-toolbar p {
+  margin-bottom: 0;
+  color: var(--subtext);
+  font-size: 0.9rem;
+}

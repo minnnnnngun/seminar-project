@@ -1,0 +1,19 @@
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  background: #f8fbff;
+  padding: 18px;
+  color: var(--subtext);
+  text-align: center;
+}
+
+.empty-state.error {
+  border-color: #9bbcf8;
+  background: var(--red-bg);
+  color: var(--red);
+  text-align: left;
+}
+
+.empty-state.empty {
+  background: #ffffff;
+}

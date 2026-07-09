@@ -1,0 +1,74 @@
+.dialog {
+  width: min(440px, calc(100% - 28px));
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 35%);
+}
+
+.dialog-panel {
+  display: grid;
+  gap: 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.dialog-heading,
+.teacher-panel-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.icon-button {
+  width: 32px;
+  min-height: 32px;
+  border-color: var(--border);
+  background: #ffffff;
+  color: var(--text);
+  padding: 0;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--subtext);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 0 10px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 14%);
+}
+
+.error,
+.form-message {
+  min-height: 20px;
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.error {
+  color: var(--red);
+}

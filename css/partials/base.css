@@ -1,0 +1,82 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f8ff;
+  --panel: #ffffff;
+  --text: #172033;
+  --subtext: #637189;
+  --border: #c9d8f2;
+  --border-soft: #e3ebf8;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --green: #1f6feb;
+  --orange: #5b7cfa;
+  --red: #174ea6;
+  --green-bg: #eaf2ff;
+  --orange-bg: #eef2ff;
+  --red-bg: #e6efff;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  min-height: 38px;
+  border: 1px solid var(--blue);
+  border-radius: 6px;
+  background: var(--blue);
+  color: #ffffff;
+  padding: 0 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--blue-dark);
+}
+
+button.secondary {
+  border-color: var(--border);
+  background: #ffffff;
+  color: var(--text);
+}
+
+button.danger {
+  border-color: var(--red);
+  background: var(--red);
+}
+
+button.text-button {
+  min-height: auto;
+  border: 0;
+  background: transparent;
+  color: var(--blue-dark);
+  padding: 0;
+  justify-self: center;
+}
+
+button.text-button:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}

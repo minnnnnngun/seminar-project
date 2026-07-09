@@ -1,4 +1,5 @@
 const SeminarApp = (() => {
+  // API 주소는 localStorage로 덮어쓸 수 있게 해서 배포/테스트 환경을 쉽게 바꾼다.
   const API_BASE =
     localStorage.getItem("seminar-room-api-base") ||
     "https://seminar.sungju.xyz";
@@ -36,6 +37,7 @@ const SeminarApp = (() => {
   let onDataChange = () => {};
   let onLogout = () => {};
 
+  // 모든 페이지에서 공통으로 쓰는 로그인, 회원가입, 로그아웃 이벤트를 연결한다.
   function bindCommonEvents(options = {}) {
     onDataChange = options.onDataChange || (() => {});
     onLogout = options.onLogout || (() => {});
@@ -88,6 +90,7 @@ const SeminarApp = (() => {
     });
   }
 
+  // 교실 목록과 예약 목록을 서버에서 같이 가져오고, 실패하면 기본 교실 목록을 보여준다.
   async function loadRemoteData() {
     state.isLoading = true;
     state.apiError = "";
@@ -111,6 +114,7 @@ const SeminarApp = (() => {
     }
   }
 
+  // 공통 fetch 래퍼. JSON 헤더, 인증 토큰, 에러 메시지 처리를 한곳에서 관리한다.
   async function apiRequest(path, options = {}) {
     const headers = {
       Accept: "application/json",
@@ -150,6 +154,7 @@ const SeminarApp = (() => {
     return payload;
   }
 
+  // 선생님 로그인 후 토큰을 저장하고, 선생님 페이지가 아니면 관리 화면으로 이동한다.
   async function loginTeacher() {
     const teacherName = document.querySelector("#teacherName");
     const teacherPassword = document.querySelector("#teacherPassword");
@@ -188,6 +193,7 @@ const SeminarApp = (() => {
     }
   }
 
+  // 선생님 계정을 만들고 성공하면 로그인 모달로 자연스럽게 이어준다.
   async function signupTeacher() {
     const signupForm = document.querySelector("#signupForm");
     const signupTeacherName = document.querySelector("#signupTeacherName");
@@ -227,6 +233,7 @@ const SeminarApp = (() => {
     }
   }
 
+  // 서버가 순수 문자열을 내려줘도 화면에 표시할 수 있게 안전하게 파싱한다.
   function safeJsonParse(text) {
     try {
       return JSON.parse(text);
@@ -235,6 +242,7 @@ const SeminarApp = (() => {
     }
   }
 
+  // 백엔드 응답이 배열, data, list 중 어떤 형태여도 목록으로 맞춘다.
   function unwrapList(payload) {
     if (Array.isArray(payload)) return payload;
     if (Array.isArray(payload?.data)) return payload.data;
@@ -242,6 +250,7 @@ const SeminarApp = (() => {
     return [];
   }
 
+  // 교실 데이터의 필드 이름과 상태 값을 프론트에서 쓰는 형태로 통일한다.
   function normalizeClassroom(classroom) {
     const name = String(classroom?.name ?? "");
     const id = classroom?.id ?? classroom?.classroomId ?? name;
@@ -256,6 +265,7 @@ const SeminarApp = (() => {
     };
   }
 
+  // 예약 데이터도 화면 렌더링에 필요한 구조로 정규화한다.
   function normalizeReservation(reservation) {
     const classroom = normalizeClassroom(reservation?.classroom || {});
     const time = reservation?.time ?? reservation?.period ?? "";
@@ -272,18 +282,21 @@ const SeminarApp = (() => {
     };
   }
 
+  // 서버의 숫자/문자 상태 값을 교실 상태 코드로 변환한다.
   function normalizeClassroomStatus(status) {
     if (status === 0 || status === "USE") return "USE";
     if (status === 1 || status === "ONE") return "ONE";
     return "EMPTY";
   }
 
+  // 예약 승인 상태를 READY, ALLOW, REFUSE 중 하나로 통일한다.
   function normalizeReservationStatus(status) {
     if (status === 0 || status === "ALLOW") return "ALLOW";
     if (status === 2 || status === "REFUSE") return "REFUSE";
     return "READY";
   }
 
+  // 특정 교실과 교시에 해당하는 예약을 찾는다.
   function getReservationForClassroom(classroomId, period, statuses) {
     return state.reservations.find(
       (reservation) =>
@@ -293,6 +306,7 @@ const SeminarApp = (() => {
     );
   }
 
+  // 교실 자체 상태와 예약 상태를 합쳐 화면에서 쓸 카드 상태를 계산한다.
   function getRoomStatus(room, reservation) {
     if (reservation?.status === "READY") return "pending";
     if (reservation?.status === "ALLOW") return "using";
@@ -300,6 +314,7 @@ const SeminarApp = (() => {
     return "available";
   }
 
+  // dialog 미지원 브라우저에서도 open 속성으로 모달을 표시한다.
   function openDialog(dialog) {
     if (!dialog) return;
     if (dialog.showModal) {
@@ -309,6 +324,7 @@ const SeminarApp = (() => {
     dialog.setAttribute("open", "");
   }
 
+  // dialog 미지원 브라우저까지 고려해서 모달을 닫는다.
   function closeDialog(dialog) {
     if (!dialog) return;
     if (dialog.close) {
@@ -318,6 +334,7 @@ const SeminarApp = (() => {
     dialog.removeAttribute("open");
   }
 
+  // 로그인 여부에 따라 선생님 패널과 로그인 버튼 문구를 갱신한다.
   function setLoggedIn(isLoggedIn) {
     const teacherPanel = document.querySelector("#teacherPanel");
     const openLoginButton = document.querySelector("#openLoginButton");
@@ -333,6 +350,7 @@ const SeminarApp = (() => {
     }
   }
 
+  // select 옵션을 공통 방식으로 다시 채운다.
   function fillSelect(select, options) {
     if (!select) return;
     select.innerHTML = "";
@@ -344,6 +362,7 @@ const SeminarApp = (() => {
     });
   }
 
+  // 로딩, 빈 목록, 에러 안내에 쓰는 공통 상태 박스를 만든다.
   function createStateBox(message, type = "") {
     const box = document.createElement("div");
     box.className = `empty-state${type ? ` ${type}` : ""}`;
@@ -351,6 +370,7 @@ const SeminarApp = (() => {
     return box;
   }
 
+  // 동적으로 생성하는 버튼의 기본 속성과 클릭 이벤트를 묶어 만든다.
   function createActionButton(label, action, className = "") {
     const button = document.createElement("button");
     button.type = "button";
@@ -360,12 +380,14 @@ const SeminarApp = (() => {
     return button;
   }
 
+  // 로그인 모달의 에러 문구를 갱신한다.
   function setLoginError(message) {
     const loginError = document.querySelector("#loginError");
     if (!loginError) return;
     loginError.textContent = message;
   }
 
+  // 회원가입 모달의 안내/에러 문구를 갱신한다.
   function setSignupMessage(message, isError = false) {
     const signupMessage = document.querySelector("#signupMessage");
     if (!signupMessage) return;
@@ -373,10 +395,12 @@ const SeminarApp = (() => {
     signupMessage.style.color = isError ? "var(--red)" : "var(--green)";
   }
 
+  // 저장된 선생님 인증 토큰을 가져온다.
   function getToken() {
     return localStorage.getItem(tokenKey);
   }
 
+  // 네트워크/서버 오류를 사용자가 이해할 수 있는 문장으로 바꾼다.
   function getErrorMessage(error) {
     if (error instanceof TypeError && error.message === "Failed to fetch") {
       return "브라우저에서 API 요청이 차단되었습니다. 서버 CORS 설정에서 이 프론트 주소를 허용해야 합니다.";

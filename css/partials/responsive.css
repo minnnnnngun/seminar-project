@@ -1,0 +1,39 @@
+@media (max-width: 760px) {
+  .site-header {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 14px 16px;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+  }
+
+  .main-layout {
+    padding: 14px 16px 22px;
+  }
+
+  .floor-section {
+    padding: 14px;
+  }
+
+  .floor-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .floor-status-list {
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  .room-card-top {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .status-pill {
+    width: fit-content;
+  }
+}

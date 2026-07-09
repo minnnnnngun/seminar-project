@@ -1,5 +1,6 @@
 const app = SeminarApp;
 
+// 선생님 페이지의 예약함, 검토 모달, 승인/거절 버튼 DOM 요소들이다.
 const teacherInbox = document.querySelector("#teacherInbox");
 const reviewDialog = document.querySelector("#reviewDialog");
 const closeReviewButton = document.querySelector("#closeReviewButton");
@@ -14,6 +15,7 @@ let currentReviewId = null;
 
 initTeacherPage();
 
+// 공통 로그인 이벤트와 선생님 페이지 이벤트를 연결하고 예약 데이터를 불러온다.
 async function initTeacherPage() {
   app.bindCommonEvents({
     onDataChange: renderInbox,
@@ -24,6 +26,7 @@ async function initTeacherPage() {
   await app.loadRemoteData();
 }
 
+// 검토 모달 닫기, 승인, 거절 버튼 이벤트를 연결한다.
 function bindTeacherEvents() {
   closeReviewButton?.addEventListener("click", () => app.closeDialog(reviewDialog));
 
@@ -40,6 +43,7 @@ function bindTeacherEvents() {
   });
 }
 
+// 예약 신청을 승인 또는 거절 상태로 서버에 반영한다.
 async function updateReservationStatus(id, status) {
   const buttonText = status === "ALLOW" ? "승인" : "거절";
 
@@ -58,6 +62,7 @@ async function updateReservationStatus(id, status) {
   }
 }
 
+// 잘못 들어온 예약 신청을 서버에서 삭제한다.
 async function deleteReservation(id) {
   try {
     await app.apiRequest(`/reservation?id=${encodeURIComponent(id)}`, {
@@ -69,6 +74,7 @@ async function deleteReservation(id) {
   }
 }
 
+// 승인 대기 예약의 상세 내용을 검토 모달에 채워서 연다.
 function openReviewDialog(id) {
   const reservation = app.state.reservations.find((item) => String(item.id) === String(id));
   if (!reservation || reservation.status !== "READY") return;
@@ -82,6 +88,7 @@ function openReviewDialog(id) {
   app.openDialog(reviewDialog);
 }
 
+// 로그인/로딩/에러/빈 목록 상태에 맞춰 선생님 예약함을 다시 그린다.
 function renderInbox() {
   if (!teacherInbox) return;
 
