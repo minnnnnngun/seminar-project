@@ -21,6 +21,7 @@
           <a class="nav-link active" href="floor-3.html">3층</a>
           <a class="nav-link" href="floor-2.html">2층</a>
           <button id="openReservationButton" type="button">예약하기</button>
+          <button id="openSignupButton" class="secondary" type="button">선생님 회원가입</button>
           <button id="openLoginButton" class="secondary" type="button">선생님 로그인</button>
         </nav>
       </header>
@@ -82,7 +83,34 @@
           <input id="teacherPassword" type="password" autocomplete="current-password" placeholder="비밀번호를 입력하세요" required />
         </label>
         <button type="submit">로그인</button>
+        <button id="openSignupFromLoginButton" class="text-button" type="button">선생님 회원가입</button>
         <p id="loginError" class="error" role="alert"></p>
+      </form>
+    </dialog>
+
+    <dialog id="signupDialog" class="dialog">
+      <form id="signupForm" class="dialog-panel">
+        <div class="dialog-heading">
+          <div>
+            <p>Teacher Access</p>
+            <h2>선생님 회원가입</h2>
+          </div>
+          <button id="closeSignupButton" class="icon-button" type="button" aria-label="닫기">x</button>
+        </div>
+        <label>
+          교사 이름
+          <input id="signupTeacherName" type="text" autocomplete="username" placeholder="이름을 입력하세요" required />
+        </label>
+        <label>
+          선생님 가입 코드
+          <input id="signupTeacherKey" type="password" autocomplete="off" placeholder="백엔드에서 정한 가입 코드를 입력하세요" required />
+        </label>
+        <label>
+          사용할 비밀번호
+          <input id="signupTeacherPassword" type="password" autocomplete="new-password" placeholder="비밀번호를 입력하세요" required />
+        </label>
+        <button type="submit">회원가입</button>
+        <p id="signupMessage" class="form-message" role="status"></p>
       </form>
     </dialog>
 
@@ -110,6 +138,7 @@
       </article>
     </template>
 
-    <script src="../js/app.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/floor.js"></script>
   </body>
 </html>
